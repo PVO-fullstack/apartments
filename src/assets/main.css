@@ -1,0 +1,6 @@
+@import "./base.css";
+@import "./reset.css";
+
+#app {
+  font-family: Montserrat, sans-serif;
+}
