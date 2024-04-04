@@ -17,9 +17,11 @@ export default {
 <style lang="scss">
 .btn {
   width: 95px;
-  height: 45px;
-  background: rgb(151, 105, 105);
+  height: 40px;
+  background: orange;
   font-size: larger;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
 
   &:hover {
     background: blue;

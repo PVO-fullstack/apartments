@@ -1,7 +1,7 @@
 <template>
-  <select class="custom-select">
+  <select @input="updateValue" class="custom-select">
     <option
-      v-for="item in items"
+      v-for="item in formatedItems"
       :key="item.value"
       :selected="item.selected"
       :value="item.value"
@@ -20,18 +20,26 @@ export default {
     },
   },
 
-  //   setup(props, context) {
-  //     const updateValue = (event) => {
-  //       context.emit("update:modelValue", event.target.value);
-  //     };
+  setup(props, context) {
+    const updateValue = (event) => {
+      context.emit("update:modelValue", event.target.value);
+    };
 
-  //     return { updateValue };
-  //   },
+    return { updateValue };
+  },
+
+  computed: {
+    formatedItems() {
+      return this.items.map((item) => {
+        return typeof item === "object" ? item : { value: item, label: item };
+      });
+    },
+  },
 };
 </script>
 <style lang="scss">
 .custom-select {
-  height: 40px;
+  min-height: 40px;
   border: 2px solid orange;
   font-size: 18px;
   outline: none;

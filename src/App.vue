@@ -2,9 +2,10 @@
   <div>
     <Header></Header>
     <Container>
-      <ApartmentFilterForm @submit="logger" />
+      <ApartmentFilterForm @submit="filter" />
+      <p v-if="filtredApartments.length === 0">No apartments</p>
+      <ApartmentsList :items="filtredApartments" />
     </Container>
-    <ApartmentsList :items="apartments" />
   </div>
 </template>
 <script>
@@ -16,9 +17,17 @@ import Container from "./components/shared/Container.vue";
 export default {
   data() {
     return {
-      context: "jvv",
       apartments,
+      filters: {
+        city: "",
+        price: 0,
+      },
     };
+  },
+  computed: {
+    filtredApartments() {
+      return this.filterByCityName(this.filterByPrice(this.apartments));
+    },
   },
   components: {
     Header,
@@ -27,8 +36,24 @@ export default {
     ApartmentFilterForm,
   },
   methods: {
-    logger: function (value) {
-      console.log(value);
+    filter({ city, price }) {
+      console.log(city);
+      this.filters.city = city;
+      this.filters.price = price;
+    },
+    filterByCityName(apartments) {
+      if (!this.filters.city) return apartments;
+
+      return apartments.filter(
+        (apartment) => apartment.location.city === this.filters.city
+      );
+    },
+    filterByPrice(apartments) {
+      if (!this.filters.price) return apartments;
+
+      return apartments.filter(
+        (apartment) => apartment.price >= this.filters.price
+      );
     },
   },
 };
