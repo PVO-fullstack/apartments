@@ -1,8 +1,8 @@
 <template>
-  <form @click.prevent="handleSubmit">
-    <CustomSelect v-model="city" :items="cities" />
-    <CustomInput placeholder="Price, from" v-model="price" />
-    <SubmitButton type="submit">Find</SubmitButton>
+  <form @click.prevent="handleSubmit" class="form">
+    <CustomSelect v-model="city" :items="cities" class="select" />
+    <CustomInput placeholder="Price, from" v-model="price" class="input" />
+    <SubmitButton type="submit" class="btn">Find</SubmitButton>
   </form>
 </template>
 <script>
@@ -26,7 +26,7 @@ export default {
   computed: {
     cities() {
       return [
-        { label: "city", value: "", selected: true },
+        { label: "City", value: "", selected: true },
         "Odesa",
         "Dnipro",
         "Poltava",
@@ -46,4 +46,20 @@ export default {
   },
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.form {
+  display: flex;
+  margin-block: 20px;
+}
+
+.input {
+  margin-left: 20px;
+}
+
+.btn {
+  text-align: center;
+  margin-left: auto;
+  padding: 8px 15px;
+  width: 200px;
+}
+</style>

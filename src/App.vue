@@ -1,12 +1,13 @@
-<template lang="">
-  <div>
+<template>
+  <slot>
     <Header></Header>
     <Container>
       <ApartmentFilterForm @submit="filter" />
       <p v-if="filtredApartments.length === 0">No apartments</p>
       <ApartmentsList :items="filtredApartments" />
     </Container>
-  </div>
+    <Footer></Footer>
+  </slot>
 </template>
 <script>
 import Header from "./components/Header.vue";
@@ -14,6 +15,7 @@ import ApartmentsList from "./components/apartment/ApartmentsList.vue";
 import apartments from "./components/apartment/apartments";
 import ApartmentFilterForm from "./components/apartment/ApartmentFilterForm.vue";
 import Container from "./components/shared/Container.vue";
+import Footer from "./components/Footer.vue";
 export default {
   data() {
     return {
@@ -34,6 +36,7 @@ export default {
     ApartmentsList,
     Container,
     ApartmentFilterForm,
+    Footer,
   },
   methods: {
     filter({ city, price }) {

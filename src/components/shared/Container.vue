@@ -10,7 +10,8 @@ export default {
 </script>
 <style lang="scss">
 .container {
-  max-width: 1110px;
+  width: 1110px;
   margin: 0 auto;
+  flex-grow: 1;
 }
 </style>
